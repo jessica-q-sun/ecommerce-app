@@ -22,7 +22,7 @@ exports.generateToken = (req, res) => {
 exports.processPayment = (req, res) => {
     let nonceFromTheClient = req.body.paymentMethodNonce;
     let amountFromTheClient = req.body.amount;
-    // charge
+    // charge the trascaction
     let newTransaction = gateway.transaction.sale(
         {
             amount: amountFromTheClient,

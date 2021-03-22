@@ -56,13 +56,9 @@ exports.create = (req, res) => {
         }
 
         let product = new Product(fields);
-
-        // 1kb = 1000
-        // 1mb = 1000000
-
         if (files.photo) {
-            // console.log("FILES PHOTO: ", files.photo);
-            if (files.photo.size > 1000000) {
+            // 1000000 equals to 1mb = 1000000
+            if (files.photo.size > 1000000) { 
                 return res.status(400).json({
                     error: "Image should be less than 1mb in size"
                 });
@@ -109,11 +105,7 @@ exports.update = (req, res) => {
         let product = req.product;
         product = _.extend(product, fields);
 
-        // 1kb = 1000
-        // 1mb = 1000000
-
         if (files.photo) {
-            // console.log("FILES PHOTO: ", files.photo);
             if (files.photo.size > 1000000) {
                 return res.status(400).json({
                     error: "Image should be less than 1mb in size"
@@ -135,9 +127,7 @@ exports.update = (req, res) => {
 };
 
 /**
- * sell / arrival
- * by sell = /products?sortBy=sold&order=desc&limit=4
- * by arrival = /products?sortBy=createdAt&order=desc&limit=4
+ * sort products by numbers of products sold and arrival date
  * if no params are sent, then all products are returned
  */
 
@@ -162,8 +152,8 @@ exports.list = (req, res) => {
 };
 
 /**
- * it will find the products based on the req product category
- * other products that has the same category, will be returned
+ * find products based on the req product category
+ * list other products that have the same category
  */
 
 exports.listRelated = (req, res) => {
@@ -195,10 +185,6 @@ exports.listCategories = (req, res) => {
 
 /**
  * list products by search
- * we will implement product search in react frontend
- * we will show categories in checkbox and price range in radio buttons
- * as the user clicks on those checkbox and radio buttons
- * we will make api request and show the products to users based on what he wants
  */
 
 exports.listBySearch = (req, res) => {
@@ -207,9 +193,6 @@ exports.listBySearch = (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
     let skip = parseInt(req.body.skip);
     let findArgs = {};
-
-    // console.log(order, sortBy, limit, skip, req.body.filters);
-    // console.log("findArgs", findArgs);
 
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {

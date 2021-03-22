@@ -4,7 +4,6 @@ import { emptyCart } from './cartHelpers';
 import Card from './Card';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-// import "braintree-web"; // not using this package
 import DropIn from 'braintree-web-drop-in-react';
 
 const Checkout = ({ products, setRun = f => f, run = undefined }) => {
@@ -60,21 +59,15 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
 
     const buy = () => {
         setData({ loading: true });
-        // send the nonce to your server
-        // nonce = data.instance.requestPaymentMethod()
+        // send nonce to server 
         let nonce;
         let getNonce = data.instance
             .requestPaymentMethod()
             .then(data => {
-                // console.log(data);
+                
                 nonce = data.nonce;
-                // once you have nonce (card type, card number) send nonce as 'paymentMethodNonce'
-                // and also total to be charged
-                // console.log(
-                //     "send nonce and total to process: ",
-                //     nonce,
-                //     getTotal(products)
-                // );
+                // send nonce as 'paymentMethodNonce'
+                // and the total amount to be charged
                 const paymentData = {
                     paymentMethodNonce: nonce,
                     amount: getTotal(products)
@@ -85,7 +78,6 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                         console.log(response);
                         // empty cart
                         // create order
-
                         const createOrderData = {
                             products: products,
                             transaction_id: response.transaction.id,
@@ -115,7 +107,6 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
                     });
             })
             .catch(error => {
-                // console.log("dropin error: ", error);
                 setData({ ...data, error: error.message });
             });
     };

@@ -17,7 +17,6 @@ const Profile = ({ match }) => {
     const { name, email, password, error, success } = values;
 
     const init = userId => {
-        // console.log(userId);
         read(userId, token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: true });

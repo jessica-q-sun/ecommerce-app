@@ -27,7 +27,6 @@ const UpdateProduct = ({ match }) => {
         name,
         description,
         price,
-        // categories,
         category,
         shipping,
         quantity,

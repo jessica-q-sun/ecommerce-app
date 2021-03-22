@@ -1,4 +1,4 @@
 # ecommerce-app
 
 
-![](Home-page.gif)
+<image src="./demo/Home=page.gif" height="300"/>

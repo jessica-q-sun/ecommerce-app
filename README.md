@@ -1,4 +1,4 @@
-# An E-Commerce App
+# A Scalable and Fully-Functional E-Commerce App
 
 An e-commerce web application that allows users to create an account, search books by name and category, browse related products, add and update books in the shopping cart, and checkout with credit card or PayPal. 
 
